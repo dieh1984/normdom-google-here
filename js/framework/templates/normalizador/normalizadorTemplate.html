@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Normalizador de Direcciones <small>API Google Maps - (PRUEBA DE CONCEPTO)</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+                Complete el formulario para identificar la dirección
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>Calle</label>
+            <input id="calle" value="" class="form-control">
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label>Número</label>
+            <input id="numero" value="" class="form-control">
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label>CP</label>
+            <input id="cp" value="" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>Partido</label>
+            <input id="partido" value="" class="form-control">
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>Barrio</label>
+            <input id="barrio" value="" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>Localidad</label>
+            <input id="localidad" value="" class="form-control">
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>Provincia</label>
+            <input id="provincia" value="" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <button type="button" id="buscar" class="btn btn-danger">Buscar</button>
+    </div>
+</div>
+
+<p></p>
+<div id="tablaPrediccion"></div>
+
+<div class="modal fade" id="modalPlace" tabindex="-1" role="dialog" aria-labelledby="modalDialogLabel" aria-hidden="true">
+  <div class="modal-dialog"> <!--style="width: 900px; height: 500px;">-->
+    <div id="modalDetails" class="modal-content">
+        <div class="modal-body">
+            <div id="placeDetails"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="map" style="display: none;"></div>
+<div id="mapBing" style="display: none;"></div>

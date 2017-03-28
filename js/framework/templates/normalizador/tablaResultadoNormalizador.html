@@ -1,0 +1,201 @@
+<p></p>
+<img src="css/image/merlin.png">
+<span><i style="color: green" class="fa fa-check-square-o fa-2"></i></span> {{totalMerlinOk}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: orange" class="fa fa-exclamation-triangle"></i></span> {{totolMerlinDudosos}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: red" class="fa fa-times-circle fa-2"></i></span> {{totalMerlinNoEncontrados}}
+<p></p>
+<img src="css/image/here.png">
+<span><i style="color: green" class="fa fa-check-square-o fa-2"></i></span> {{totalHereOk}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: orange" class="fa fa-exclamation-triangle"></i></span> {{totalHereCodPosErroneo}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: red" class="fa fa-times-circle fa-2"></i></span> {{totalHereNotFound}}
+<p></p>
+<img src="css/image/googleMaps.png">
+<span><i style="color: green" class="fa fa-check-square-o fa-2"></i></span> {{totalGoogleOk}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: orange" class="fa fa-exclamation-triangle"></i></span> {{totalGoogleCodPosErroneo}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: red" class="fa fa-times-circle fa-2"></i></span> {{totalGoogleNotFound}} 
+<p></p>
+<h4>Resultados de combinar los servicios Google Maps y Here Maps:</h4>
+<span><i style="color: green" class="fa fa-check-square-o fa-2"></i></span> {{googleAndHereOK}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: orange" class="fa fa-exclamation-triangle"></i></span> {{googleAndHereWARNING}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: red" class="fa fa-times-circle fa-2"></i></span> {{googleAndHereERROR}} 
+<p></p>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Resultados</h3>
+        <div class="table-responsive">
+            
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Dirección Original</th>
+                        <th colspan='2'>Merlin</th>
+                        <th colspan='2'>Here</th>
+                        <th colspan='2'>Google</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each listadoResult}}
+                    
+                        {{#ifCond this.errorCodPosGoogle 1}}
+                            {{#ifCond this.errorCodPosHere 1}}
+                                <tr class="success">
+                            {{else}}
+                                <tr>
+                            {{/ifCond}}
+                        {{else}}
+                            {{#ifCond this.noResultGoogle 0}}
+                                {{#ifCond this.noResultHere 0}}
+                                    <tr class="danger">
+                                {{else}}
+                                    <tr>
+                                {{/ifCond}}
+                            {{else}}
+                                <tr>
+                            {{/ifCond}}
+                        {{/ifCond}}
+                        
+                        <td>{{this.calleOri}}, {{this.localidadOri}}, {{this.provinciaOri}}, {{this.codposOri}}</td>
+                        
+                        
+                        {{#ifCond this.resolucion 'CO'}}
+                            <td width="40"><i style="color: green" class="fa fa-check-square-o fa-2"></i></td>
+                        {{/ifCond}}  
+                        {{#ifCond this.resolucion 'DU'}}
+                            <td width="40"><i style="color: orange" class="fa fa-exclamation-triangle"></i></td>
+                        {{/ifCond}}  
+                        {{#ifCond this.resolucion 'NE'}}
+                            <td width="40"><i style="color: red" class="fa fa-times-circle fa-2"></i></td>
+                        {{/ifCond}}
+                        <td>{{this.calleMerlin}}, {{this.barrioMerlin}}, {{this.localidadMerlin}}, {{this.partidoMerlin}}, {{this.provinciaMerlin}}, COD.POS: {{this.codposOri}}</td>
+                        
+                        
+                        {{#ifCond this.noResultHere 1}}
+                            {{#ifCond this.errorCodPosHere 1}}
+                                <td width="40"><i style="color: green" class="fa fa-check-square-o fa-2"></i></td>
+                            {{else}}
+                                <td width="40"><i style="color: orange" class="fa fa-exclamation-triangle"></i></td>
+                            {{/ifCond}}
+                            <td>{{this.calleHere}} {{this.numeroHere}}, {{this.barrioHere}}, {{this.localidadHere}}, {{this.partidoHere}}, {{this.provinciaHere}}, COD.POS: {{this.codposHere}}</td>
+                        {{else}}
+                            <td width="40"><i style="color: red" class="fa fa-times-circle fa-2"></i></td>
+                            <td>NO ENCONTRADO</td>
+                        {{/ifCond}}
+                        
+                        
+                        {{#ifCond this.noResultGoogle 1}}
+                            {{#ifCond this.errorCodPosGoogle 1}}
+                                <td width="40"><i style="color: green" class="fa fa-check-square-o fa-2"></i></td>
+                            {{else}}
+                                <td width="40"><i style="color: orange" class="fa fa-exclamation-triangle"></i></td>
+                            {{/ifCond}}
+                            <td>{{this.calleGoogle}}, {{this.barrioGoogle}}, {{this.localidadGoogle}}, {{this.partidoGoogle}}, {{this.provinciaGoogle}}, COD.POS: {{this.codposGoogle}}</td>
+                        {{else}}
+                            <td width="40"><i style="color: red" class="fa fa-times-circle fa-2"></i></td>
+                            <td>NO ENCONTRADO</td>
+                        {{/ifCond}}
+                        
+                        
+                            
+                        </tr>
+                    {{else}}
+						<tr><td colspan='6'>No se encontraron resultados</td></tr>
+					{{/each}}
+                </tbody>
+            </table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <!-- <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>calle</th>
+                        <th>barrio</th>
+                        <th>localidad</th>
+                        <th>partido</th>
+                        <th>provincia</th>
+                        <th>codigo postal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each listadoResult}}
+                        <tr>
+                            <td><i class="fa fa-home fa-2"></i></td>
+                            <td>&nbsp;</td>
+                            <td><b>{{this.calleOri}}</b></td>
+                            <td>&nbsp;</td>
+                            <td><b>{{this.localidadOri}}</b></td>
+                            <td>&nbsp;</td>
+                            <td><b>{{this.provinciaOri}}</b></td>
+                            <td><b>{{this.codposOri}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><img src="css/image/merlin.png"></td>
+                            <td>{{this.calleMerlin}}</td>
+                            <td>{{this.barrioMerlin}}</td>
+                            <td>{{this.localidadMerlin}}</td>
+                            <td>{{this.partidoMerlin}}</td>
+                            <td>{{this.provinciaMerlin}}</td>
+                            <td>{{this.codposMerlin}}</td>
+                        </tr>
+                        {{#ifCond this.noResultHere 1}}
+                        <tr>
+                            {{#ifCond this.errorCodPosHere 1}}
+                                <td><i style="color: green" class="fa fa-check-square-o fa-2"></i></td>
+                            {{else}}
+                                <td><i style="color: orange" class="fa fa-exclamation-triangle"></i></td>
+                            {{/ifCond}}
+                            <td><img src="css/image/here.png"></td>
+                            <td>{{this.calleHere}} {{this.numeroHere}}</td>
+                            <td>{{this.barrioHere}}</td>
+                            <td>{{this.localidadHere}}</td>
+                            <td>{{this.partidoHere}}</td>
+                            <td>{{this.provinciaHere}}</td>
+                            <td>{{this.codposHere}}</td>
+                        </tr>
+                        {{else}}
+                            <tr>
+                                <td><i style="color: red" class="fa fa-times-circle fa-2"></i></td>
+                                <td><img src="css/image/here.png"></td>
+                                <td colspan='6'>NO ENCONTRADO</td>
+                            </tr>
+                        {{/ifCond}}
+                        {{#ifCond this.noResultGoogle 1}}
+                            <tr>
+                                {{#ifCond this.errorCodPosGoogle 1}}
+                                    <td><i style="color: green" class="fa fa-check-square-o fa-2"></i></td>
+                                {{else}}
+                                    <td><i style="color: orange" class="fa fa-exclamation-triangle"></i></td>
+                                {{/ifCond}}
+                                <td><img src="css/image/googleMaps.png"></td>
+                                <td>{{this.calleGoogle}}</td>
+                                <td>{{this.barrioGoogle}}</td>
+                                <td>{{this.localidadGoogle}}</td>
+                                <td>{{this.partidoGoogle}}</td>
+                                <td>{{this.provinciaGoogle}}</td>
+                                <td>{{this.codposGoogle}}</td>
+                            </tr>
+                        {{else}}
+                            <tr>
+                                <td><i style="color: red" class="fa fa-times-circle fa-2"></i></td>
+                                <td><img src="css/image/googleMaps.png"></td>
+                                <td colspan='6'>NO ENCONTRADO</td>
+                            </tr>
+                        {{/ifCond}}
+                    {{else}}
+						<tr><td colspan='8'>No se encontraron resultados</td></tr>
+					{{/each}}
+                </tbody>
+            </table>-->
+        </div>
+    </div>
+</div>

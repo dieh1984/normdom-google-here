@@ -1,0 +1,74 @@
+<p></p>
+<span><i style="color: green" class="fa fa-check-square-o fa-2"></i></span> {{totalOk}} &nbsp;&nbsp;&nbsp;&nbsp;
+<span><i style="color: red" class="fa fa-times-circle fa-2"></i></span> {{totalSinResultados}}
+<p></p>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Predicciones</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>calle</th>
+                        <th>barrio</th>
+                        <th>localidad</th>
+                        <th>partido</th>
+                        <th>provincia</th>
+                        <th>codigo postal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each listadoResult}}
+                        {{#ifNotNull this.noResult}}
+                            <tr>
+                                <td><i style="color: red" class="fa fa-times-circle fa-2"></i></td>
+                                <td>{{this.calleOri}}</td>
+                                <td>&nbsp;</td>
+                                <td>{{this.localidadOri}}</td>
+                                <td>&nbsp;</td>
+                                <td>{{this.provinciaOri}}</td>
+                                <td>{{this.codposOri}}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td colspan='6'>NO ENCONTRADO</td>
+                            </tr>
+                        {{/ifNotNull}}
+                        {{#ifNull this.noResult}}
+                            <tr>
+                                <td>
+                                    <i style="color: green" class="fa fa-check-square-o fa-2"></i>
+                                </td>
+                                <td>{{this.calleOri}}</td>
+                                <td>&nbsp;</td>
+                                <td>{{this.localidadOri}}</td>
+                                <td>&nbsp;</td>
+                                <td>{{this.provinciaOri}}</td>
+                                <td>{{this.codposOri}}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>{{this.calle}} {{this.numero}}</td>
+                                <td>{{this.barrio}}</td>
+                                <td>{{this.localidad}}</td>
+                                <td>{{this.partido}}</td>
+                                <td>{{this.provincia}}</td>
+                                <td>{{this.codpos}}</td>
+                            </tr>
+                        {{/ifNull}}
+                        <!--<td>{{this.description}}</td>
+                        <td data-place="{{this.place_id}}">
+                            <a href="#modalPlaceDetails" id="placeSelectButton" role="button" class="btn btn-danger btn-xs" data-toggle="modal">
+								Seleccionar
+							</a>
+                        </td>-->
+                    {{else}}
+						<tr><td colspan='6'>No se encontraron resultados</td></tr>
+					{{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
